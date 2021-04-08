@@ -6,12 +6,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class GroupPage {
 
     WebDriver driver;
     String GROUPCARD_XPATH = ".//div[contains(@data-l,\"groupId\")]";
-    String IMAGE_XPATH = ".//img[contains(@class,\"photo_img\")]";
     String AUTO_XPATH = ".//a[contains(@data-l,\"t,automoto\")]";
 
     String AUTOMOTO_URL = "https://ok.ru/groups/automoto";
@@ -29,12 +30,12 @@ public class GroupPage {
                 .until(ExpectedConditions.urlToBe(AUTOMOTO_URL));
     }
 
-    public List<WebElement> getGroupsList(){
+    public List<CardElement> getGroupsList(){
 
-        return driver.findElements(By.xpath(GROUPCARD_XPATH));
+        return (driver.findElements(By.xpath(GROUPCARD_XPATH)))
+                .stream()
+                .map(webElement->new CardElement(webElement))
+                .collect(Collectors.toList());
     }
 
-    public boolean IMGexist(WebElement element){
-        return element.findElements(By.xpath(IMAGE_XPATH)).size() == 1;
-    }
 }

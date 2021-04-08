@@ -15,7 +15,7 @@ public class LoginTest extends BaseTest{
     String username = "79267612747";
     String password = "ksdjfnjsdfnksdlf23r423n";
 
-    List<WebElement> groupList;
+    List<CardElement> groupList;
 
 
     @Test
@@ -32,9 +32,9 @@ public class LoginTest extends BaseTest{
 
         Assert.assertTrue("Cards not found", groupList.size() != 0);
 
-        for(WebElement webElement : groupList){
+        for(CardElement card : groupList){
             //System.out.println(webElement.getText());
-            Assert.assertTrue("Image not loaded", group.IMGexist(webElement));
+            Assert.assertTrue("Image not loaded", card.IMGexist());
         }
 
 
