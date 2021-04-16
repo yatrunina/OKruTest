@@ -15,6 +15,8 @@ public class LoginTest extends BaseTest{
     String username = "79267612747";
     String password = "ksdjfnjsdfnksdlf23r423n";
 
+    String groupHREF = null;
+
     List<CardElement> groupList;
 
 
@@ -33,9 +35,22 @@ public class LoginTest extends BaseTest{
         Assert.assertTrue("Cards not found", groupList.size() != 0);
 
         for(CardElement card : groupList){
-            //System.out.println(webElement.getText());
-            Assert.assertTrue("Image not loaded", card.IMGexist());
+            Assert.assertTrue("Image not loaded", card.imgExist(driver));
         }
+
+
+        //Попытка вступить в группу, для дальнейшей проверки, что группа появилась на странице "мои группы"
+        //нужен униукальный идентификатор, например - ссылка на группу.
+        //Нужно добавить проверку на то, что бот не состоит в данной группе
+        groupHREF = groupList.get(0).addGroup();
+        Assert.assertTrue("Group was not added)",groupHREF!=null);
+
+        Assert.assertTrue("Group not in My Groups",
+                group.selectMyGroups()
+                        .getMyGroupsSubpage()
+                        .findGroupByHref(groupHREF));
+
+
 
 
         try {
@@ -43,8 +58,10 @@ public class LoginTest extends BaseTest{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
 
-
+    @After
+    public void close(){
         this.driverExit();
     }
 

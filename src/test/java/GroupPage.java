@@ -12,11 +12,13 @@ import java.util.stream.Collectors;
 public class GroupPage {
 
     WebDriver driver;
+
     String GROUPCARD_XPATH = ".//div[contains(@data-l,\"groupId\")]";
     String AUTO_XPATH = ".//a[contains(@data-l,\"t,automoto\")]";
+    String MYGROUPS_PATH = ".//a[text()='Мои группы']";
 
     String AUTOMOTO_URL = "https://ok.ru/groups/automoto";
-
+    String MYGROUPS_URL = "/groups/mine";
 
     GroupPage(WebDriver driver){
         this.driver = driver;
@@ -38,4 +40,12 @@ public class GroupPage {
                 .collect(Collectors.toList());
     }
 
+    public MyGroupsPage selectMyGroups(){
+        driver.findElement(By.xpath(MYGROUPS_PATH)).click();
+
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.urlContains(MYGROUPS_URL));
+
+        return new MyGroupsPage(driver);
+    }
 }
