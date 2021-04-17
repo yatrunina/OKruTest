@@ -22,12 +22,9 @@ public class CardElement {
     }
 
     public String addGroup(){
-        if(!ExistChecker.checkExist(card, ADDGROUP_XPATH)){
-            return  null;
+        if(ExistChecker.checkExist(card, ADDGROUP_XPATH)){
+            card.findElement(By.xpath(ADDGROUP_XPATH)).click();
         }
-        // А если в этот промежуток времени группу сделают закрытой и кнопка исчезнет (но это очень маловероятно,
-        // поскольку программа выполняется довольно быстро)
-        card.findElement(By.xpath(ADDGROUP_XPATH)).click();
         String groupHREF = card.findElement(By.xpath(GROUPNAME_XPATH)).getAttribute("href");
         return groupHREF.substring(groupHREF.lastIndexOf('/'));
     }

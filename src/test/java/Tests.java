@@ -9,11 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class LoginTest extends BaseTest{
+public class Tests extends BaseTest{
 
 
-    String username = "79267612747";
-    String password = "ksdjfnjsdfnksdlf23r423n";
+    String username = ""; //bot username
+    String password = ""; //bot passord
 
     String groupHREF = null;
 
@@ -43,7 +43,7 @@ public class LoginTest extends BaseTest{
         //нужен униукальный идентификатор, например - ссылка на группу.
         //Нужно добавить проверку на то, что бот не состоит в данной группе
         groupHREF = groupList.get(0).addGroup();
-        Assert.assertTrue("Group was not added)",groupHREF!=null);
+
 
         Assert.assertTrue("Group not in My Groups",
                 group.selectMyGroups()
