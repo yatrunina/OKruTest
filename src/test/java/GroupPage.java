@@ -24,7 +24,10 @@ public class GroupPage {
         this.driver = driver;
     }
 
+    // TODO check()  нет, хорошо бы написать
 
+    //TODO automoto было бы логичней передавать в метод, а не задавать в пейдже.
+    // Тогда будет универсальный метод для разных категорий
     public void selectCategory(){
         driver.findElement(By.xpath(AUTO_XPATH)).click();
 

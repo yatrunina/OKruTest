@@ -10,7 +10,8 @@ public class MyGroupsPage {
         this.myGroups = driver;
     }
 
-
+    //TODO получается, мы сами создаем NullPointerException, если локатор изменится.
+    // Легче просто написать Assert.assertTrue
     public OnlyMyGroupsSubpage getMyGroupsSubpage(){
 
         if(!ExistChecker.checkExist(myGroups, ONLYMYGROUPS_XPATH)){

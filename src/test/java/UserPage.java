@@ -7,6 +7,7 @@ public class UserPage {
 
     WebDriver driver;
 
+    //TODO легче заменять кавычки на одинарные ".//a[@data-l='t,userAltGroup']"
     String GROUP_PATH = ".//a[@data-l=\"t,userAltGroup\"]";
     String GROUPS_URL = "/groups";
 
@@ -16,6 +17,8 @@ public class UserPage {
         check();
     }
 
+    //TODO не заполнен чек. Можно проверить, что элемент GROUP_PATH,
+    // на который будем кликать, есть на странице
     protected void check(){
 
     }

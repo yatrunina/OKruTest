@@ -21,6 +21,9 @@ public class LoginPage {
         check();
     }
 
+    // TODO нужно проверить, что загрузились основные элементы страницы.
+    //  Например, мы не уверены, найдутся ли на странице поля, которые используем в методе логина
+
     private void check(){
 
     }
@@ -31,6 +34,7 @@ public class LoginPage {
         driver.findElement(By.id(loginPATH)).sendKeys(username);
         driver.findElement(By.id(passwordPATH)).clear();
         driver.findElement(By.id(passwordPATH)).sendKeys(password);
+        //TODO мой браузер в русской локали не нашел этот элемент по английскому названию локатора
         driver.findElement(By.xpath("//input[@value='Log in to OK']")).click();
 
         return new UserPage(driver);

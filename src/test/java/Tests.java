@@ -1,20 +1,19 @@
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public class Tests extends BaseTest{
-
+    //TODO написала комментарии, где меня что-то смутило. В целом, очень хороший тест.
+    // Видно, что не успели дописать. Не хватает комментариев, не доделана логика.
+    // Зато успели создать много страниц, подстраниц и ExistChecker. Однако, мне кажется, легче,
+    // чтоб методы там проверяли на наличие элементов через Assert, а не возвращали boolean.
+    // Также хочу отметить хорошую работу с коллекциями, потоками и строками.
 
     String username = ""; //bot username
     String password = ""; //bot passord
-
+    // TODO не уверена, что нужно выносить поле класса
     String groupHREF = null;
 
     List<CardElement> groupList;
@@ -34,6 +33,7 @@ public class Tests extends BaseTest{
 
         Assert.assertTrue("Cards not found", groupList.size() != 0);
 
+        //TODO эта проверка лучше смотрелась бы в GroupPage
         for(CardElement card : groupList){
             Assert.assertTrue("Image not loaded", card.imgExist(driver));
         }
@@ -51,7 +51,7 @@ public class Tests extends BaseTest{
                         .findGroupByHref(groupHREF));
 
 
-
+    //TODO Наверное, дебажили и не убрали слип?
 
         try {
             Thread.sleep(5000);
@@ -60,6 +60,7 @@ public class Tests extends BaseTest{
         }
     }
 
+    //TODO лучше вынести в BaseTest
     @After
     public void close(){
         this.driverExit();
